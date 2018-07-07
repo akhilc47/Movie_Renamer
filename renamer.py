@@ -2,7 +2,7 @@ import pprint
 import os
 from helpers import preproc_title, get_original_title
 
-path = "E:/Downloads/malayalam"
+path = "E:/Downloads"
 fout = open('output.csv', 'w')
 for item in os.listdir(path):
     title_with_year = preproc_title(item)
