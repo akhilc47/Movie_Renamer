@@ -13,9 +13,10 @@ def preproc_title(bad_title: str="Titanic")-> list:
     Returns list with tokens extracted plus year(=0 default).
     '''
     bad_title = re.sub((r'[[|\]|,|.]',' ',bad_title)
+                       
     year = 0
     title_and_year = []
-    for token in bad_title:
+    for token in bad_title.split():
         if token.isdigit() and (int(token) > 1900 and int(token) < 2020):
             year = int(token)
             break
