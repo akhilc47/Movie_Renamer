@@ -1,9 +1,11 @@
+import configparser
 import json
 import urllib.request
 import urllib.parse
 
-with open('config.txt') as keyh:
-    api_key = keyh.read().strip()
+config = configparser.ConfigParser()
+config.read('config.ini')
+api_key = config['REMOTE']['api_key']
 
 
 def get_response(movie_title: str='Titanic', page_num: int=1) -> dict:
@@ -16,7 +18,7 @@ def get_response(movie_title: str='Titanic', page_num: int=1) -> dict:
 
     Output is a dictionary with the result(s).
     '''
-    tmdb_url = 'https://api.themoviedb.org/3/search/movie?api_key='
+    tmdb_url = config['REMOTE']['tmdb_url'] 
     movie_title = urllib.parse.quote(movie_title) # Escape non-ascii titles
     tmdb_query = '&query=' + '+'.join(movie_title.split())
     page = '&page='+str(page_num)
